@@ -14,19 +14,16 @@ def pt1_scoring():
 
 
 def pt2_moves():
-    winning_moves = {"C": 1, "B": 3, "A": 2}
-    drawing_moves = {"A": 1, "B": 2, "C": 3}
-    losing_moves = {"A": 3, "C": 2, "B": 1}
+    scores = {
+        "X": {"A": 3, "C": 2, "B": 1},
+        "Y": {"A": 4, "B": 5, "C": 6},
+        "Z": {"C": 7, "B": 9, "A": 8}
+    }
     total_score = 0
     for row in lines:
         required_outcome = row[2]
         opponent_plays = row[0]
-        if required_outcome == "X":  # you lose
-            total_score += losing_moves[opponent_plays]
-        elif required_outcome == "Y":  # you draw
-            total_score += (3 + drawing_moves[opponent_plays])
-        elif required_outcome == "Z":  # you win
-            total_score += (6 + winning_moves[opponent_plays])
+        total_score += scores[required_outcome][opponent_plays]
     print(total_score)
 
 
