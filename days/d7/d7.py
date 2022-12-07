@@ -57,10 +57,26 @@ def pt2():
     return min(lst)
 
 
+def pretty_tree(dct, depth=0, location_string=""):
+    stri = ""
+    for key in dct:
+        val = dct[key]
+        if type(val) != dict:
+            stri += ("\n" + (" " * ((depth * 4)-2)) + "| " + str(key) + " (" + str(val) + ")")
+        else:
+            stri += ("\n" + ("-" * (depth * 4)) + "--" + str(key) + " ("+location_string+str(key)+")")
+            slash = "/"
+            if str(key) == "/":
+                slash = ""
+            stri += pretty_tree(val, depth+1, location_string+str(key)+slash)
+    return stri
+
+
 if __name__ == "__main__":
     with open("input.txt") as f:
         lines = f.read().splitlines()
     file_structure = get_file_structure()
+    # print(pretty_tree(file_structure))
     recursive_summer(file_structure)
     print("part1: " + str(pt1()))
     print("part2: " + str(pt2()))
