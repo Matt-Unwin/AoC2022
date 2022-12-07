@@ -46,16 +46,12 @@ def recursive_min_val(dct, lst, val):
 
 
 def pt1():
-    file_structure = get_file_structure()
-    recursive_summer(file_structure)
     lst = []
     recursive_max_val(file_structure, lst, 100000)
     return sum(lst)
 
 
 def pt2():
-    file_structure = get_file_structure()
-    recursive_summer(file_structure)
     lst = []
     recursive_min_val(file_structure, lst, 2143088)
     return min(lst)
@@ -64,5 +60,7 @@ def pt2():
 if __name__ == "__main__":
     with open("input.txt") as f:
         lines = f.read().splitlines()
+    file_structure = get_file_structure()
+    recursive_summer(file_structure)
     print("part1: " + str(pt1()))
     print("part2: " + str(pt2()))
